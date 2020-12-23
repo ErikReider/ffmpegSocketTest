@@ -3,8 +3,6 @@ import subprocess as sp
 import socket
 import threading
 import atexit
-import shlex
-from functools import partial
 import io
 import cv2
 
