@@ -43,12 +43,12 @@ while True:
     data = connection.recv(timesValue)
     if not data:
         break
-    stream.write(data)
     stream.seek(0, 2)
+    stream.write(data)
     # When the stream index reaches 6220800, show a new frame (Each frame is W * H * 3 (R,G,B))
     if stream.tell() >= timesValue:
         in_bytes = stream.getvalue()[0: timesValue]
-        stream = io.BytesIO(stream.getvalue()[timesValue:])
+        stream = io.BytesIO(stream.getbuffer().tobytes()[timesValue:])
         if not in_bytes:
             break
         # Convert the raw bytes to rgb values and show the image
